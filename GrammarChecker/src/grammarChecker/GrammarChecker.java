@@ -1,17 +1,12 @@
 package grammarChecker;
 //Google Spell checker API
-import java.util.HashMap;
-import java.util.Map;
-
-
-
 
 //Stanford POS Tagger API
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 public class GrammarChecker {
 
-	static Map  <String, String> rules;
+	static Rules rules;
 	
 	public static void main(String[] args) {
 		// Initialize the tagger
@@ -19,20 +14,14 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = "You sees me";
-        //List<String> rules = new ArrayList<String>();
-        rules = new HashMap<String, String>();
-        //List<rules> 
-        rules.put("S", "NP VBP");
-        rules.put("NP", "DT NN");
-        rules.put("VBP", "VBD NP");
-        
+        String sample = "The dog and the cat eat in the morning by the big black tree";
+        rules = new Rules();
         
         // The tagged string
         String tagged = tagger.tagString(sample);
         
         //get sentence in form of tags
-        tagged = POSTSentence (tagged);
+        tagged = " " + POSTSentence (tagged) + " ";
       
         //Apply rules to sentence
         tagged = matchRules(tagged);
@@ -68,7 +57,7 @@ public class GrammarChecker {
 	 */
 	private static String matchRules(String postSentence){
 		
-		System.out.println(postSentence);
+		
 		
 		String matchedSentence = new String();
 		matchedSentence = applySubs (postSentence);
@@ -78,6 +67,7 @@ public class GrammarChecker {
 			matchedSentence = applySubs (postSentence);
 		}
 	
+		System.out.println("mathcRules: " + matchedSentence);
 		return matchedSentence;
 		
 	}
@@ -91,9 +81,10 @@ public class GrammarChecker {
 	private static String applySubs(String matchedSentence){
 
 			//Iterate through the rules
-			for(String key : rules.keySet()){
+			for(Rule rule : rules.getRules()){
 				//Match and replace each rule against the sentence
-				matchedSentence = matchedSentence.replaceAll(rules.get(key), key);
+				matchedSentence = matchedSentence.replaceAll(rule.getValue(), rule.getKey());
+				System.out.println("applySubs: " + matchedSentence);
 			}
 		return matchedSentence;
 	}
