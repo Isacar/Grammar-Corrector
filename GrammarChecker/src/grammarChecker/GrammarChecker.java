@@ -19,7 +19,7 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = "The dog saw a man";
+        String sample = "You sees me";
         //List<String> rules = new ArrayList<String>();
         rules = new HashMap<String, String>();
         //List<rules> 
