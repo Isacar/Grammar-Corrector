@@ -5,6 +5,7 @@ import java.util.Map;
 
 
 
+
 //Stanford POS Tagger API
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
@@ -18,7 +19,7 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = "The dog saw a man in the park";
+        String sample = "The dog saw a man";
         //List<String> rules = new ArrayList<String>();
         rules = new HashMap<String, String>();
         //List<rules> 
@@ -31,15 +32,21 @@ public class GrammarChecker {
         String tagged = tagger.tagString(sample);
         
         //get sentence in form of tags
-        String s = POSTSentence (tagged);
+        tagged = POSTSentence (tagged);
       
+        //Apply rules to sentence
+        tagged = matchRules(tagged);
         // Output the result
-        System.out.println(s);
+        System.out.println(tagged);
 
 	}
 	
 	
-	//Will return the sentence in form of pos tags
+	/***
+	 * Will return the sentence in form of pos tags
+	 * @param sentence
+	 * @return
+	 */
 	private static String POSTSentence (String sentence){
 		String POSTs = "";
 		String[] words = sentence.split(" ");
@@ -60,12 +67,35 @@ public class GrammarChecker {
 	 * @return matchedSentence
 	 */
 	private static String matchRules(String postSentence){
+		
+		System.out.println(postSentence);
+		
 		String matchedSentence = new String();
+		matchedSentence = applySubs (postSentence);
 		
-		
-		
+		while(matchedSentence.equals(postSentence) == false){
+			postSentence = matchedSentence;
+			matchedSentence = applySubs (postSentence);
+		}
+	
 		return matchedSentence;
 		
+	}
+	
+	/**
+	 * Applies rules to post sentence
+	 * Helper function to matchRules
+	 * @param matchedSentence
+	 * @return
+	 */
+	private static String applySubs(String matchedSentence){
+
+			//Iterate through the rules
+			for(String key : rules.keySet()){
+				//Match and replace each rule against the sentence
+				matchedSentence = matchedSentence.replaceAll(rules.get(key), key);
+			}
+		return matchedSentence;
 	}
 
 }
