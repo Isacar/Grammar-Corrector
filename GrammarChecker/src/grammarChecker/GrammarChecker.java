@@ -10,6 +10,8 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 public class GrammarChecker {
 
+	static Map  <String, String> rules;
+	
 	public static void main(String[] args) {
 		// Initialize the tagger
         MaxentTagger tagger = new MaxentTagger(
@@ -18,7 +20,7 @@ public class GrammarChecker {
         // The sample string
         String sample = "The dog saw a man in the park";
         //List<String> rules = new ArrayList<String>();
-        Map  <String, String> rules = new HashMap<String, String>();
+        rules = new HashMap<String, String>();
         //List<rules> 
         rules.put("S", "NP VBP");
         rules.put("NP", "DT NN");
@@ -59,6 +61,8 @@ public class GrammarChecker {
 	 */
 	private static String matchRules(String postSentence){
 		String matchedSentence = new String();
+		
+		
 		
 		return matchedSentence;
 		
