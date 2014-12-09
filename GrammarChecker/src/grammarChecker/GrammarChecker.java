@@ -14,17 +14,22 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = "The dog and the cat eat in the morning by the big black tree";
+        String sample = " Does She have money ";
         rules = new Rules();
         
         // The tagged string
         String tagged = tagger.tagString(sample);
+        System.out.println(tagged);
+       
+        //Fix personal pronoun tag
+        tagged = " " + fixPRPtag (tagged) + " ";
+        System.out.println(tagged);
         
         //get sentence in form of tags
-        tagged = " " + POSTSentence (tagged) + " ";
-      
+        tagged = POSTSentence (tagged);
+        
         //Apply rules to sentence
-        tagged = matchRules(tagged);
+        //tagged = matchRules(tagged);
         // Output the result
         System.out.println(tagged);
 
@@ -41,7 +46,7 @@ public class GrammarChecker {
 		String[] words = sentence.split(" ");
 		String word = new String();
 		
-		for(int i = 0; i < words.length; i++){
+		for(int i = 1; i < words.length; i++){
 			word = words[i];
 			String[] wordParts = word.split("_");
 			POSTs += wordParts[1] + " ";
@@ -87,6 +92,25 @@ public class GrammarChecker {
 				System.out.println("applySubs: " + matchedSentence);
 			}
 		return matchedSentence;
+	}
+	/***
+	 * since stanford tagger doesnt tag 3rd person personal pronouns
+	 * this function adds a z to the personal pronoun tags that are 3rd person
+	 * @param postSentence
+	 * @return
+	 */
+	private static String fixPRPtag(String postSentence){
+		String newPostSentence = new String();
+		newPostSentence = postSentence;
+		
+		if (newPostSentence.contains("She_PRP "))
+			newPostSentence = newPostSentence.replaceAll("She_PRP ", "She_PRPZ " );
+		else if (newPostSentence.contains("He_PRP  "))
+			newPostSentence = newPostSentence.replaceAll("He_PRP ", "He_PRPZ " );
+		else if(newPostSentence.contains("It_PRP "))
+			newPostSentence = newPostSentence.replaceAll("It_PRP ", "It_PRPZ " );
+			
+		return newPostSentence;
 	}
 
 }

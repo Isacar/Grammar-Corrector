@@ -16,8 +16,7 @@ public class Rules {
 	}
 
 	public Rules() {
-		
-		//List<String> rules = new ArrayList<String>();
+	
         rules = new ArrayList<Rule>();
         Rule newRule = new Rule(" S ", " NP VP ");
         rules.add(newRule);
