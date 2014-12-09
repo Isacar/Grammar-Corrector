@@ -14,22 +14,23 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = " Does She have money ";
+        String sample = "I am tired";
+        
+        // crete object that contains rules
         rules = new Rules();
         
         // The tagged string
         String tagged = tagger.tagString(sample);
-        System.out.println(tagged);
-       
+        
         //Fix personal pronoun tag
         tagged = " " + fixPRPtag (tagged) + " ";
-        System.out.println(tagged);
-        
+       
         //get sentence in form of tags
-        tagged = POSTSentence (tagged);
+        tagged = " " + POSTSentence (tagged) +  " ";
         
         //Apply rules to sentence
-        //tagged = matchRules(tagged);
+        tagged = matchRules(tagged);
+        
         // Output the result
         System.out.println(tagged);
 
