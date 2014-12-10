@@ -21,25 +21,10 @@ public class Rules {
         Rule newRule = new Rule(" S ", " NP VP ");
         rules.add(newRule);
         
-        newRule = new Rule(" S ", " NP VPB NNS ");
-        rules.add(newRule);
-        
         newRule = new Rule(" S ", " NPZ VPZ ");
         rules.add(newRule);
         
-        newRule = new Rule(" S ", " PRP VBP JJ ");
-        rules.add(newRule);
-        
-        newRule = new Rule(" S ", " PRP VBP JJ JJ ");
-        rules.add(newRule);
-        
-        newRule = new Rule(" S ", " PRPZ VBPZ JJ ");
-        rules.add(newRule);
-        
-        newRule = new Rule(" S ", " PRPZ VBPZ JJ JJ ");
-        rules.add(newRule);
-        
-        newRule = new Rule(" NP ", " DT NN ");
+        newRule = new Rule(" PRPZ ", " DT NN ");
         rules.add(newRule);
         
         newRule = new Rule(" NP ", " PRP ");
@@ -51,11 +36,29 @@ public class Rules {
         newRule = new Rule(" PRPZ ", " PRP$ NN ");
         rules.add(newRule);
         
+        newRule = new Rule(" S ", " NPZ VPZ NNS ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRP VBP JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " NPZ VBZ JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRP VBP JJ JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRPZ VBPZ JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRPZ VBPZ JJ JJ ");
+        rules.add(newRule);
+        
         newRule = new Rule(" VP ", " VB S ");
         rules.add(newRule);
         newRule = new Rule(" NN ", " JJ NN ");
         rules.add(newRule);
-        newRule = new Rule(" NN ", " JJ NNS ");
+        newRule = new Rule(" NNS ", " JJ NNS ");
         rules.add(newRule);
         newRule = new Rule(" VBG ", " TO VB ");
         rules.add(newRule);
@@ -137,6 +140,12 @@ public class Rules {
         rules.add(newRule);
         
         newRule = new Rule(" NP ", " IN NN ");
+        rules.add(newRule);
+        newRule = new Rule(" VPZ ", " VBD NP ");
+        rules.add(newRule);
+        newRule = new Rule(" VPZ ", " VBZ NN ");
+        rules.add(newRule);
+        newRule = new Rule(" VPZ ", " VBZ NNS ");
         rules.add(newRule);
         newRule = new Rule(" VP ", " VBN NP ");
         rules.add(newRule);

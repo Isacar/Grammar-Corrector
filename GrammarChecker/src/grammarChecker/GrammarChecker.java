@@ -18,7 +18,7 @@ public class GrammarChecker {
         SpellChecker checker = new SpellChecker();
         
         // The sample string
-        String sample = "I like to play soccer wiht my friends";
+        String sample = "She likes tomatoes";
         
         // Check for spelling mistakes
         boolean correct = checker.run(sample);
