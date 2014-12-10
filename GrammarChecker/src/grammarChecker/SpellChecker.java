@@ -26,9 +26,8 @@ public class SpellChecker extends GrammarChecker {
 		for(int i = 1; i < words.length; i++){
 			word = words[i];
 			String tag = tagger.tagString(word);
-			tag = POSTWord(tag);
-			System.out.println(tag);
-			if(!tag.equals("NNS")) {
+			tag = POSTWord(tag).trim();
+			if(!tag.contentEquals("NNS") && !tag.contentEquals("NNPS") && !tag.contentEquals("NNP")) {
 				if (!dict.contains(word)) {
 	                System.out.print(word + " is not spelled correctly. ");
 	                System.out.println(printSuggestions(word));
