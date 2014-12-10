@@ -21,15 +21,48 @@ public class Rules {
         Rule newRule = new Rule(" S ", " NP VP ");
         rules.add(newRule);
         
+        newRule = new Rule(" S ", " NP VPB NNS ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " NPZ VPZ ");
+        rules.add(newRule);
+        
         newRule = new Rule(" S ", " PRP VBP JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRP VBP JJ JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRPZ VBPZ JJ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" S ", " PRPZ VBPZ JJ JJ ");
         rules.add(newRule);
         
         newRule = new Rule(" NP ", " DT NN ");
         rules.add(newRule);
         
-        newRule = new Rule(" VP ", " VB S ");
+        newRule = new Rule(" NP ", " PRP ");
         rules.add(newRule);
         
+        newRule = new Rule(" NPZ ", " PRPZ ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" PRPZ ", " PRP$ NN ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" VP ", " VB S ");
+        rules.add(newRule);
+        newRule = new Rule(" NN ", " JJ NN ");
+        rules.add(newRule);
+        newRule = new Rule(" NN ", " JJ NNS ");
+        rules.add(newRule);
+        newRule = new Rule(" VBG ", " TO VB ");
+        rules.add(newRule);
+        
+        newRule = new Rule(" VPZ ", " VBZ S ");
+        rules.add(newRule);
+
         newRule = new Rule(" NP ", " PDT NP ");
         rules.add(newRule);
         
@@ -45,15 +78,12 @@ public class Rules {
         newRule = new Rule(" NP ", " DT IN DT ");
         rules.add(newRule);
         
-        
         newRule = new Rule(" NP ", "  NP VBG IN NNP ");
         rules.add(newRule);
        
-        
         newRule = new Rule(" NP ", " NP VBG IN NP IN DT JJ ");
         rules.add(newRule);
-         
-        
+                
         newRule = new Rule(" NP ", " DT NNS ");
         rules.add(newRule);
         
@@ -103,33 +133,39 @@ public class Rules {
         
         newRule = new Rule(" NP ", " NP CC NP ");
         rules.add(newRule);
-        
+        newRule = new Rule(" NP ", " NP CC NP ");
+        rules.add(newRule);
         
         newRule = new Rule(" NP ", " IN NN ");
+        rules.add(newRule);
+        newRule = new Rule(" VP ", " VBN NP ");
         rules.add(newRule);
         newRule = new Rule(" VP ", " VBD NP ");
         rules.add(newRule);
         newRule = new Rule(" VP ", " VB NP ");
         rules.add(newRule);
-        newRule = new Rule(" VP ", " VB NP PP ");
-        rules.add(newRule);
-        newRule = new Rule(" NN ", " JJ NN ");
+        newRule = new Rule(" VP ", " VB S ");
         rules.add(newRule);
         newRule = new Rule(" VP ", " VB PP ");
         rules.add(newRule);
-        newRule = new Rule(" VP ", " VBN NP ");
-        rules.add(newRule);
         newRule = new Rule(" VP ", " VBN IN S ");
         rules.add(newRule);
-        newRule = new Rule(" NP ", " NP CC NP ");
+        newRule = new Rule(" VP ", " VBP NN ");
         rules.add(newRule);
         newRule = new Rule(" VP ", " VP CC VP ");
         rules.add(newRule);
+        newRule = new Rule(" VP ", " VBP VBG JJ ");
+        rules.add(newRule);
+        newRule = new Rule(" VP ", " VBP VBG NN ");
+        rules.add(newRule);
+        newRule = new Rule(" VP ", " VBP VBG NNS ");
+        rules.add(newRule);
         newRule = new Rule(" S ", " S CC S ");
+        rules.add(newRule);
+        newRule = new Rule(" S ", " S IN NP ");
         rules.add(newRule);
         newRule = new Rule(" S ", " S VB ");
         rules.add(newRule);
-        
         
 	}
 

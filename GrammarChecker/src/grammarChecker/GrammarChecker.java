@@ -14,7 +14,7 @@ public class GrammarChecker {
                 "taggers/english-left3words-distsim.tagger");
  
         // The sample string
-        String sample = "I am tired";
+        String sample = "I like to play soccer with my friends";
         
         // crete object that contains rules
         rules = new Rules();
@@ -63,8 +63,6 @@ public class GrammarChecker {
 	 */
 	private static String matchRules(String postSentence){
 		
-		
-		
 		String matchedSentence = new String();
 		matchedSentence = applySubs (postSentence);
 		
@@ -87,11 +85,19 @@ public class GrammarChecker {
 	private static String applySubs(String matchedSentence){
 
 			//Iterate through the rules
-			for(Rule rule : rules.getRules()){
-				//Match and replace each rule against the sentence
-				matchedSentence = matchedSentence.replaceAll(rule.getValue(), rule.getKey());
-				System.out.println("applySubs: " + matchedSentence);
-			}
+		for(Rule rule : rules.getRules()){
+			
+			//Match and replace each rule against the sentence
+			matchedSentence = matchedSentence.replaceAll(rule.getValue(), rule.getKey());
+			System.out.println("applySubs: " + matchedSentence);
+		}
+		for(Rule rule : rules.getRules()){
+			
+			//Match and replace each rule against the sentence
+			matchedSentence = matchedSentence.replaceAll(rule.getValue(), rule.getKey());
+			System.out.println("applySubs: " + matchedSentence);
+		}
+		
 		return matchedSentence;
 	}
 	/***
