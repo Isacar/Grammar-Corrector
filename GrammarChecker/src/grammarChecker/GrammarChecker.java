@@ -8,31 +8,42 @@ public class GrammarChecker {
 
 	static Rules rules;
 	
+	// Initialize the tagger	 
+	public static MaxentTagger tagger = new MaxentTagger(
+            "taggers/english-left3words-distsim.tagger");
+	
 	public static void main(String[] args) {
-		// Initialize the tagger
-        MaxentTagger tagger = new MaxentTagger(
-                "taggers/english-left3words-distsim.tagger");
- 
+		
+        //Initialize SpellChecker object
+        SpellChecker checker = new SpellChecker();
+        
         // The sample string
-        String sample = "I like to play soccer with my friends";
+        String sample = "I like to play socccer with my parents";
         
-        // crete object that contains rules
-        rules = new Rules();
+        // Check for spelling mistakes
+        boolean correct = checker.run(sample);
         
-        // The tagged string
-        String tagged = tagger.tagString(sample);
-        
-        //Fix personal pronoun tag
-        tagged = " " + fixPRPtag (tagged) + " ";
-       
-        //get sentence in form of tags
-        tagged = " " + POSTSentence (tagged) +  " ";
-        
-        //Apply rules to sentence
-        tagged = matchRules(tagged);
-        
-        // Output the result
-        System.out.println(tagged);
+        if(correct) {
+	        // create object that contains rules
+	        rules = new Rules();
+	        
+	        // The tagged string
+	        String tagged = tagger.tagString(sample);
+	        
+	        //Fix personal pronoun tag
+	        tagged = " " + fixPRPtag (tagged) + " ";
+	        
+	        //get sentence in form of tags
+	        tagged = " " + POSTSentence (tagged) +  " ";
+	        
+	        //Apply rules to sentence
+	        tagged = matchRules(tagged);
+	        
+	        // Output the result
+	        System.out.println(tagged);
+        }
+        else
+        	System.out.println("Consider rewriting the sample sentence. \n");
 
 	}
 	
@@ -40,9 +51,9 @@ public class GrammarChecker {
 	/***
 	 * Will return the sentence in form of pos tags
 	 * @param sentence
-	 * @return
+	 * @return set of POS tags
 	 */
-	private static String POSTSentence (String sentence){
+	protected static String POSTSentence (String sentence){
 		String POSTs = "";
 		String[] words = sentence.split(" ");
 		String word = new String();
@@ -54,6 +65,19 @@ public class GrammarChecker {
 		}
 		
 		return POSTs;
+	}
+	
+	/***
+	 * Will return a single word in form of pos tag
+	 * @param word
+	 * @return POS tag
+	 */
+	protected static String POSTWord (String word){
+		String POST = new String();
+		String[] wordParts = word.split("_");
+		POST += wordParts[1];
+		
+		return POST;
 	}
 	
 	/*** 
